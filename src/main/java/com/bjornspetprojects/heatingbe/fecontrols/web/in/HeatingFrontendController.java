@@ -38,13 +38,25 @@ public class HeatingFrontendController {
     @PutMapping("pump")
     public ResponseEntity setPump(@RequestParam Boolean setting){
         if(setting){
-            heatingService.activatePump();
+            heatingService.activatePumpPermanently();
         }
         else{
             heatingService.disactivatePump();
         }
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("pumpinterval")
+    public ResponseEntity setPumpInterval(@RequestParam Integer intervalValue){
+        if(intervalValue > 0){
+            heatingService.activatePumpWithInterval(intervalValue);
+        }
+        else{
+            heatingService.disactivatePump();
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("burner")
     public ResponseEntity<Boolean> getBurnerSetting(){
         return ResponseEntity.ok(heatingService.getBurnerStatus());
