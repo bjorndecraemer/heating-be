@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/fecontrol/")
+@CrossOrigin
 public class HeatingFrontendController {
 
     private final HeatingService heatingService;
@@ -35,6 +36,7 @@ public class HeatingFrontendController {
         }
         return ResponseEntity.ok().build();
     }
+
     @PutMapping("pump")
     public ResponseEntity setPump(@RequestParam Boolean setting){
         if(setting){
@@ -45,13 +47,27 @@ public class HeatingFrontendController {
         }
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("burner")
     public ResponseEntity<Boolean> getBurnerSetting(){
         return ResponseEntity.ok(heatingService.getBurnerStatus());
     }
 
+
     @GetMapping("pump")
     public ResponseEntity<Boolean> getPumpSetting(){
         return ResponseEntity.ok(heatingService.getPumpStatus());
+    }
+
+
+    @GetMapping("temp")
+    public ResponseEntity<String> getTemperature(){
+        return ResponseEntity.ok(heatingService.getTempReading());
+    }
+
+
+    @GetMapping("humidity")
+    public ResponseEntity<String> getHumidity(){
+        return ResponseEntity.ok(heatingService.getHumidityReading());
     }
 }

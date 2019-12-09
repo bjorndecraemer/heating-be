@@ -1,5 +1,6 @@
 package com.bjornspetprojects.heatingbe.pi.services;
 
+import com.bjornspetprojects.heatingbe.sensors.TempAndHumidityReading;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

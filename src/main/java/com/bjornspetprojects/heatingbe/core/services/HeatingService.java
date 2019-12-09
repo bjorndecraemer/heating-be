@@ -1,5 +1,7 @@
 package com.bjornspetprojects.heatingbe.core.services;
 
+import com.bjornspetprojects.heatingbe.sensors.TempAndHumidityReading;
+
 public interface HeatingService {
     void activateHeating();
     void disactivateHeating();
@@ -9,4 +11,9 @@ public interface HeatingService {
     void activateAll();
     Boolean getPumpStatus();
     Boolean getBurnerStatus();
+    void newReadings(TempAndHumidityReading tempAndHumidityReading);
+
+    String getTempReading();
+
+    String getHumidityReading();
 }

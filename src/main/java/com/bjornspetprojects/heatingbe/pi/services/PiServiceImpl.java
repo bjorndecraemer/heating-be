@@ -1,5 +1,6 @@
 package com.bjornspetprojects.heatingbe.pi.services;
 
+import com.bjornspetprojects.heatingbe.sensors.TempAndHumidityReading;
 import com.pi4j.io.gpio.*;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class PiServiceImpl implements PiService {
     private final GpioController gpio = GpioFactory.getInstance();
     private GpioPinDigitalOutput myPump;
     private GpioPinDigitalOutput myBurner;
+
+    private Long temp;
+    private Long humidity;
 
     @Override
     @PostConstruct

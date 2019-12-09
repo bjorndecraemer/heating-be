@@ -1,12 +1,15 @@
 package com.bjornspetprojects.heatingbe.core.services;
 
 import com.bjornspetprojects.heatingbe.pi.services.PiService;
+import com.bjornspetprojects.heatingbe.sensors.TempAndHumidityReading;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HeatingServiceImpl implements HeatingService {
 
     private final PiService piService;
+    private String temp;
+    private String humidity;
 
     public HeatingServiceImpl(PiService piService) {
         this.piService = piService;
@@ -52,5 +55,29 @@ public class HeatingServiceImpl implements HeatingService {
     @Override
     public Boolean getBurnerStatus() {
         return piService.getBurnerStatus();
+    }
+
+    @Override
+    public void newReadings(TempAndHumidityReading tempAndHumidityReading) {
+        if(tempAndHumidityReading != null){
+            String newTemp = tempAndHumidityReading.getTemperature();
+            String newHumidity = tempAndHumidityReading.getHumidity();
+            if(newTemp != null){
+                this.temp = newTemp;
+            }
+            if(newHumidity != null){
+                this.humidity = newHumidity;
+            }
+        }
+    }
+
+    @Override
+    public String getTempReading() {
+        return this.temp;
+    }
+
+    @Override
+    public String getHumidityReading() {
+        return this.humidity;
     }
 }
