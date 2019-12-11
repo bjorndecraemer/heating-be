@@ -10,6 +10,7 @@ public class HeatingServiceImpl implements HeatingService {
     private final PiService piService;
     private Long temp;
     private Long humidity;
+    private Boolean manualStatus = false;
 
     public HeatingServiceImpl(PiService piService) {
         this.piService = piService;
@@ -48,6 +49,16 @@ public class HeatingServiceImpl implements HeatingService {
     }
 
     @Override
+    public void activateManual() {
+        this.manualStatus = true;
+    }
+
+    @Override
+    public void deactivateManual() {
+        this.manualStatus = false;
+    }
+
+    @Override
     public Boolean getPumpStatus() {
         return piService.getPumpStatus();
     }
@@ -56,6 +67,11 @@ public class HeatingServiceImpl implements HeatingService {
     public Boolean getBurnerStatus() {
         return piService.getBurnerStatus();
     }
+    @Override
+    public Boolean getManualStatus(){
+        return manualStatus;
+    }
+
 
     @Override
     public void newReadings(TempAndHumidityReading tempAndHumidityReading) {

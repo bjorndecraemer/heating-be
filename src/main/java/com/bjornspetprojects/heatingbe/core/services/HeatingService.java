@@ -9,8 +9,11 @@ public interface HeatingService {
     void disactivatePump();
     void disactivateAll();
     void activateAll();
+    void activateManual();
+    void deactivateManual();
     Boolean getPumpStatus();
     Boolean getBurnerStatus();
+    Boolean getManualStatus();
     void newReadings(TempAndHumidityReading tempAndHumidityReading);
 
     Long getTempReading();

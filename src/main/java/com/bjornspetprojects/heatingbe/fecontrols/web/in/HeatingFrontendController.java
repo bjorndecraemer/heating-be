@@ -48,6 +48,17 @@ public class HeatingFrontendController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("manual")
+    public ResponseEntity setManual(@RequestParam Boolean setting){
+        if(setting){
+            heatingService.activateManual();
+        }
+        else{
+            heatingService.deactivateManual();
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("burner")
     public ResponseEntity<Boolean> getBurnerSetting(){
         return ResponseEntity.ok(heatingService.getBurnerStatus());
@@ -57,6 +68,11 @@ public class HeatingFrontendController {
     @GetMapping("pump")
     public ResponseEntity<Boolean> getPumpSetting(){
         return ResponseEntity.ok(heatingService.getPumpStatus());
+    }
+
+    @GetMapping("manual")
+    public ResponseEntity<Boolean> getManualSetting(){
+        return ResponseEntity.ok(heatingService.getManualStatus());
     }
 
 
