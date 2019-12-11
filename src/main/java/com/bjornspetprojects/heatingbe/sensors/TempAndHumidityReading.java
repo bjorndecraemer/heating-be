@@ -6,10 +6,10 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-@ToString
 @NoArgsConstructor
+@ToString
 public class TempAndHumidityReading {
-    private String temperature;
-    private String humidity;
+    private Long temperature;
+    private Long humidity;
 }
 

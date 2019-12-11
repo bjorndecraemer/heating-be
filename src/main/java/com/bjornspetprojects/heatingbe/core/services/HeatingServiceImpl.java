@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 public class HeatingServiceImpl implements HeatingService {
 
     private final PiService piService;
-    private String temp;
-    private String humidity;
+    private Long temp;
+    private Long humidity;
 
     public HeatingServiceImpl(PiService piService) {
         this.piService = piService;
@@ -60,8 +60,8 @@ public class HeatingServiceImpl implements HeatingService {
     @Override
     public void newReadings(TempAndHumidityReading tempAndHumidityReading) {
         if(tempAndHumidityReading != null){
-            String newTemp = tempAndHumidityReading.getTemperature();
-            String newHumidity = tempAndHumidityReading.getHumidity();
+            Long newTemp = tempAndHumidityReading.getTemperature();
+            Long newHumidity = tempAndHumidityReading.getHumidity();
             if(newTemp != null){
                 this.temp = newTemp;
             }
@@ -72,12 +72,12 @@ public class HeatingServiceImpl implements HeatingService {
     }
 
     @Override
-    public String getTempReading() {
+    public Long getTempReading() {
         return this.temp;
     }
 
     @Override
-    public String getHumidityReading() {
+    public Long getHumidityReading() {
         return this.humidity;
     }
 }

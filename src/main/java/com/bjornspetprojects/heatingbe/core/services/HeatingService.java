@@ -13,7 +13,7 @@ public interface HeatingService {
     Boolean getBurnerStatus();
     void newReadings(TempAndHumidityReading tempAndHumidityReading);
 
-    String getTempReading();
+    Long getTempReading();
 
-    String getHumidityReading();
+    Long getHumidityReading();
 }

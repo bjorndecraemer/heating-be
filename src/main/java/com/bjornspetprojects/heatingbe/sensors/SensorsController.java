@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/sensors/")
 @CrossOrigin
+@RequestMapping("api/sensors/")
 public class SensorsController {
 
     private final HeatingService heatingService;

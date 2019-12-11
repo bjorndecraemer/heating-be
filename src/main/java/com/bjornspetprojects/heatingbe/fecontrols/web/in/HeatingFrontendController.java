@@ -62,12 +62,20 @@ public class HeatingFrontendController {
 
     @GetMapping("temp")
     public ResponseEntity<String> getTemperature(){
-        return ResponseEntity.ok(heatingService.getTempReading());
+        String tempString = null;
+        if(heatingService.getTempReading() != null){
+            tempString = ""+heatingService.getTempReading();
+        }
+        return ResponseEntity.ok(tempString);
     }
 
 
     @GetMapping("humidity")
     public ResponseEntity<String> getHumidity(){
-        return ResponseEntity.ok(heatingService.getHumidityReading());
+        String humidityString = null;
+        if(heatingService.getHumidityReading() != null) {
+            humidityString = ""+heatingService.getHumidityReading();
+        }
+        return ResponseEntity.ok(humidityString);
     }
 }
