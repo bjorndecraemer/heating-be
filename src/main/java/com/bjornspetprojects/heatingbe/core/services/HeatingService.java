@@ -19,4 +19,8 @@ public interface HeatingService {
     Long getTempReading();
 
     Long getHumidityReading();
+
+    Integer getRequestedTemp();
+
+    void setRequestedTemp(Integer requestedTemp);
 }

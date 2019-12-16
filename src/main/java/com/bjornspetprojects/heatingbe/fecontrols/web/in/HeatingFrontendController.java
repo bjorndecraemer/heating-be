@@ -59,6 +59,12 @@ public class HeatingFrontendController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("requestedtemp")
+    public ResponseEntity setRequestedTemp(@RequestParam Integer setting){
+        heatingService.setRequestedTemp(setting);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("burner")
     public ResponseEntity<Boolean> getBurnerSetting(){
         return ResponseEntity.ok(heatingService.getBurnerStatus());
@@ -93,5 +99,13 @@ public class HeatingFrontendController {
             humidityString = ""+heatingService.getHumidityReading();
         }
         return ResponseEntity.ok(humidityString);
+    }
+
+    @GetMapping("requestedtemp")
+    public ResponseEntity<Integer> getRequestedTemp(){
+        if(heatingService.getRequestedTemp() != null) {
+            return ResponseEntity.ok(heatingService.getRequestedTemp());
+        }
+        return ResponseEntity.ok(0);
     }
 }

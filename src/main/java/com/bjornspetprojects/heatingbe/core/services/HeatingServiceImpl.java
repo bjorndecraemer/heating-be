@@ -8,9 +8,21 @@ import org.springframework.stereotype.Service;
 public class HeatingServiceImpl implements HeatingService {
 
     private final PiService piService;
+
+    @Override
+    public Integer getRequestedTemp() {
+        return requestedTemp;
+    }
+
+    @Override
+    public void setRequestedTemp(Integer requestedTemp) {
+        this.requestedTemp = requestedTemp;
+    }
+
     private Long temp;
     private Long humidity;
     private Boolean manualStatus = false;
+    private Integer requestedTemp = 0;
 
     public HeatingServiceImpl(PiService piService) {
         this.piService = piService;
