@@ -60,8 +60,8 @@ public class HeatingFrontendController {
     }
 
     @PutMapping("requestedtemp")
-    public ResponseEntity setRequestedTemp(@RequestParam Integer setting){
-        heatingService.setRequestedTemp(setting);
+    public ResponseEntity setRequestedTemp(@RequestParam Integer value){
+        heatingService.setRequestedTemp(value);
         return ResponseEntity.ok().build();
     }
 

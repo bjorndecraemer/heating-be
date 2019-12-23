@@ -15,7 +15,7 @@ public class ScheduledWorker {
 
     @Scheduled(fixedRate = 5000)
     public void checkForChanges(){
-        if(heatingService.getManualStatus()){
+        if(!heatingService.getManualStatus()){
             boolean currentBurnerStatus = heatingService.getBurnerStatus();
             boolean currentPumpStatus = heatingService.getPumpStatus();
             long currentTemp = heatingService.getTempReading();
@@ -41,11 +41,16 @@ public class ScheduledWorker {
         if(requestedTemp == null || requestedTemp == 0){
             return false;
         }
-        return currentTemp < requestedTemp;
+        if(burnerStatus){
+            return currentTemp <= requestedTemp;
+        }
+        else{
+            return currentTemp < requestedTemp;
+        }
     }
 
     private boolean shouldPumpBeActive(long currentTemp, Integer requestedTemp, boolean pumpStatus){
-        if(requestedTemp <= 0){
+        if(requestedTemp == null || requestedTemp <= 0){
             return false;
         }
         if(pumpStatus){

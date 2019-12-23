@@ -101,11 +101,15 @@ public class HeatingServiceImpl implements HeatingService {
 
     @Override
     public Long getTempReading() {
+        if(this.temp == null)
+            return 0l;
         return this.temp;
     }
 
     @Override
     public Long getHumidityReading() {
+        if(this.humidity == null)
+            return 0l;
         return this.humidity;
     }
 }
